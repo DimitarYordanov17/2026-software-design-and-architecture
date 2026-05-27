@@ -73,3 +73,20 @@ class ChocolateSticksDecorator(IceCreamDecorator):
 
     def price(self):
         return self._ice_cream.price() + 0.50
+
+
+if __name__ == "__main__":
+    shop1 = IceCreamShop()
+    shop2 = IceCreamShop()
+    print(f"Same shop instance: {shop1 is shop2}\n")
+
+    vanilla = IceCreamFactory.create("vanilla")
+    chocolate = IceCreamFactory.create("chocolate")
+    strawberry = IceCreamFactory.create("strawberry")
+
+    chocolate = ChocolateGlazeDecorator(chocolate)
+    strawberry = ChocolateSticksDecorator(ChocolateGlazeDecorator(strawberry))
+
+    shop1.serve(vanilla)
+    shop1.serve(chocolate)
+    shop1.serve(strawberry)
