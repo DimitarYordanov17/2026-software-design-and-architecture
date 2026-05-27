@@ -61,3 +61,33 @@ class TaskFactory:
         if student_type not in tasks:
             raise ValueError(f"Unknown student type: {student_type}")
         return tasks[student_type]()
+
+
+class SuperpowerDecorator(ABC):
+    def __init__(self, student):
+        self._student = student
+
+    @property
+    def student_type(self):
+        return self._student.student_type
+
+    def arrive(self):
+        self._student.arrive()
+
+    def describe(self):
+        return self._student.describe()
+
+
+class SuperConcentration(SuperpowerDecorator):
+    def describe(self):
+        return self._student.describe() + " + Super Concentration"
+
+
+class FastWriting(SuperpowerDecorator):
+    def describe(self):
+        return self._student.describe() + " + Fast Writing"
+
+
+class Telepathy(SuperpowerDecorator):
+    def describe(self):
+        return self._student.describe() + " + Telepathy"
