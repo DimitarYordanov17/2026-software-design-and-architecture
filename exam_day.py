@@ -91,3 +91,18 @@ class FastWriting(SuperpowerDecorator):
 class Telepathy(SuperpowerDecorator):
     def describe(self):
         return self._student.describe() + " + Telepathy"
+
+
+class University:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            print("University is open for exam day!")
+        return cls._instance
+
+    def process_student(self, student):
+        student.arrive()
+        task = TaskFactory.create(student.student_type)
+        print(f"{student.describe()} → {task.describe()}\n")
