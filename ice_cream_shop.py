@@ -46,3 +46,30 @@ class IceCreamFactory:
         if flavor not in flavors:
             raise ValueError(f"Unknown flavor: {flavor}")
         return flavors[flavor]()
+
+
+class IceCreamDecorator:
+    def __init__(self, ice_cream):
+        self._ice_cream = ice_cream
+
+    def describe(self):
+        return self._ice_cream.describe()
+
+    def price(self):
+        return self._ice_cream.price()
+
+
+class ChocolateGlazeDecorator(IceCreamDecorator):
+    def describe(self):
+        return self._ice_cream.describe() + " with Chocolate Glaze"
+
+    def price(self):
+        return self._ice_cream.price() + 0.75
+
+
+class ChocolateSticksDecorator(IceCreamDecorator):
+    def describe(self):
+        return self._ice_cream.describe() + " with Chocolate Sticks"
+
+    def price(self):
+        return self._ice_cream.price() + 0.50
