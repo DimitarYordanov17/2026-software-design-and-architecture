@@ -33,3 +33,31 @@ class Student:
 
     def describe(self):
         return f"{self.name} ({self.student_type})"
+
+
+class FunTask:
+    def describe(self):
+        return "Fun Task: solve a puzzle!"
+
+
+class IncomprehensibleTask:
+    def describe(self):
+        return "Incomprehensible Task: decipher ancient runes!"
+
+
+class EasyTask:
+    def describe(self):
+        return "Easy Task: write your name!"
+
+
+class TaskFactory:
+    @staticmethod
+    def create(student_type):
+        tasks = {
+            "prodigy": FunTask,
+            "fitness_maniac": IncomprehensibleTask,
+            "lucky": EasyTask,
+        }
+        if student_type not in tasks:
+            raise ValueError(f"Unknown student type: {student_type}")
+        return tasks[student_type]()
