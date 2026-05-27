@@ -106,3 +106,21 @@ class University:
         student.arrive()
         task = TaskFactory.create(student.student_type)
         print(f"{student.describe()} → {task.describe()}\n")
+
+
+if __name__ == "__main__":
+    alice = Student("Alice", "prodigy", RunningWithJumps())
+    bob = Student("Bob", "fitness_maniac", Teleportation())
+    charlie = Student("Charlie", "lucky", SleepingOnBus())
+
+    alice = SuperConcentration(alice)
+    bob = FastWriting(bob)
+    charlie = Telepathy(charlie)
+
+    uni1 = University()
+    uni2 = University()
+    print(f"Same university instance: {uni1 is uni2}\n")
+
+    uni1.process_student(alice)
+    uni1.process_student(bob)
+    uni1.process_student(charlie)
